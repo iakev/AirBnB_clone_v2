@@ -140,3 +140,7 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+##### Student Module
+Project that is modified by the students `Kevin Mwongera and Nathan Kirimi` highlighting how to deal with an existing codebase, edit it and at the same time improve the AirBnB clone project.
+The project highlights unittest usage, *args and **kwargs usage in python, environmental variables, MySQL database, using different storage engines in a project, SQLAlchemy among others
