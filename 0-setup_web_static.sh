@@ -57,7 +57,7 @@ server {
 		 root /var/www/html;
 		 internal;
 	}
-}" | sudo tee /etc/nginx/sites-available/default
+}" | sudo tee /etc/nginx/sites-available/default > /dev/null
 
 #restarting nginx for changes in conf to take hold
 sudo service nginx restart
