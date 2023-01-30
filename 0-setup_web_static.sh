@@ -44,7 +44,7 @@ server {
        server_name iakevdesign.tech;
 
        root /var/www/iakevdesign.tech/text;
-       index hello;
+       index hello index.html;
 
        # Everything is a 404
        location / {
@@ -60,8 +60,8 @@ server {
 		 root /var/www/iakevdesign.tech/text;
 		 internal;
 	}
-       	location /hbnb_static {
-		alias /data/web_static/current/;
+       	location ^~ /hbnb_static {
+		alias /data/web_static/current;
 	}
 }" | sudo tee /etc/nginx/sites-available/iakevdesign.tech > /dev/null
 
