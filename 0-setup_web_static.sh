@@ -41,10 +41,9 @@ server {
        listen 80;
        listen [::]:80;
        add_header X-Served-By $HOSTNAME;
-       server_name iakevdesign.tech;
 
-       root /var/www/iakevdesign.tech/text;
-       index hello index.html;
+       root /var/www/html;
+       index index.html index.htm;
 
        location /hbnb_static {
 		alias /data/web_static/current;
@@ -53,12 +52,12 @@ server {
        location /redirect_me {
        		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
-	error_page 404 /error;
-	location /error {
-		 root /var/www/iakevdesign.tech/text;
+	error_page 404 /404.html;
+	location /404 {
+		 root /var/www/html;
 		 internal;
 	}
-}" | sudo tee /etc/nginx/sites-available/iakevdesign.tech > /dev/null
+}" | sudo tee /etc/nginx/sites-available/default
 
 #restarting nginx for changes in conf to take hold
 sudo service nginx restart
