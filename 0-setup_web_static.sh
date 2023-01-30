@@ -40,29 +40,23 @@ sudo echo "# Virtual Host configuration for example.com
 server {
        listen 80;
        listen [::]:80;
-
+       add_header X-Serve-By $HOSTNAME;
        server_name iakevdesign.tech;
 
        root /var/www/iakevdesign.tech/text;
        index hello index.html;
 
-       # Everything is a 404
-       location / {
-       		try_files \$uri \$uri/ =404;
-       }
-
+       location /hbnb_static {
+		alias /data/web_static/current;
+		index index.html index.htm;
+	}
        location /redirect_me {
        		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
-
 	error_page 404 /error;
 	location = /error {
 		 root /var/www/iakevdesign.tech/text;
 		 internal;
-	}
-       	location ^~ /hbnb_static {
-		alias /data/web_static/current;
-		index index.html;
 	}
 }" | sudo tee /etc/nginx/sites-available/iakevdesign.tech > /dev/null
 
