@@ -62,6 +62,7 @@ server {
 	}
        	location ^~ /hbnb_static {
 		alias /data/web_static/current;
+		index index.html;
 	}
 }" | sudo tee /etc/nginx/sites-available/iakevdesign.tech > /dev/null
 
