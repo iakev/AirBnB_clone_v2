@@ -17,7 +17,5 @@ def do_pack():
     date_str = datetime.now().strftime("%Y%m%d%H%M%S")
     file_name = "web_Static_{}.tgz".format(date_str)
     result = local("tar -cvzf versions/{} web_static".format(file_name))
-    if result.failed:
-        return None
-    else:
-        return "versions/{}".format(file_name)
+    return "versions/{}".format(file_name) \
+        if local("ls versions/{}".format(file_name)).succeeded else None
