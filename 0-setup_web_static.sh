@@ -40,7 +40,7 @@ sudo echo "# Virtual Host configuration for example.com
 server {
        listen 80;
        listen [::]:80;
-       add_header X-Serve-By $HOSTNAME;
+       add_header X-Served-By $HOSTNAME;
        server_name iakevdesign.tech;
 
        root /var/www/iakevdesign.tech/text;
