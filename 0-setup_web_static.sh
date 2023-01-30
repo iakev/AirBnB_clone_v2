@@ -54,7 +54,7 @@ server {
        		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
 	error_page 404 /error;
-	location = /error {
+	location /error {
 		 root /var/www/iakevdesign.tech/text;
 		 internal;
 	}
