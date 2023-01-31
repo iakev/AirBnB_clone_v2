@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script to create and distribute an archive to my web servers using 
+Script to create and distribute an archive to my web servers using
 deploy function
 """
 from datetime import datetime
@@ -26,6 +26,7 @@ def do_pack():
         return None
     else:
         return file_name
+
 
 def do_deploy(archive_path):
     """
@@ -71,6 +72,7 @@ def do_deploy(archive_path):
                 return False
         else:
             return False
+
 
 def deploy():
     """
