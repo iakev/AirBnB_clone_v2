@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
+        """ Create an object of any class and return the ID"""
         # need to preprocess the arguments
         c_args = args.split(" ")
         c_name = c_args[0]
@@ -125,7 +125,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         params = c_args[1:len(c_args)]
-        print ("params", params)
         # pre procesisng params
         params_dict = {}
         for param in params:
@@ -135,7 +134,6 @@ class HBNBCommand(cmd.Cmd):
             if val.startswith('"'):
                 val = val.replace('"', '')
                 val = val.replace('_', " ")
-                print("str", val)
             elif '.' in val:
                 floats = val.split(".")
                 if len(floats) == 2:
@@ -143,8 +141,6 @@ class HBNBCommand(cmd.Cmd):
                         val = float(val)
                     except Exception as e:
                         val = None
-                print("floats", type(val))
-                    
             elif val.isnumeric():
                 try:
                     val = int(val)
@@ -157,6 +153,8 @@ class HBNBCommand(cmd.Cmd):
             if v is None:
                 continue
             setattr(new_instance, k, v)
+        storage.save()
+        print(new_instance.id)
         storage.save()
 
     def help_create(self):
