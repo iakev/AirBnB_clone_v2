@@ -118,11 +118,17 @@ class HBNBCommand(cmd.Cmd):
         # need to preprocess the arguments
         c_args = args.split(" ")
         c_name = c_args[0]
-        if not c_name:
+        if Len(c_args) == 0 or '=' in c_name:
             print("** class name missing **")
             return
         elif c_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
+            return
+        if len(c_args) == 1:
+            new_instance = HBNBCommand.classes[c_name]()
+            storage.save()
+            print(new_instance.id)
+            storage.save()
             return
         params = c_args[1:len(c_args)]
         # pre procesisng params
