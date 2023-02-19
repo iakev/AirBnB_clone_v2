@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def pre_process_args(self, param_args):
-        """Helper function for preprocessing create params 
+        """Helper function for preprocessing create params
         returns a  dictionary containing the params"""
         if not param_args:
             return None
@@ -249,7 +249,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             for k, v in storage._FileStorage__objects.items():
                 print_list.append(str(v))
-                
         print(print_list)
 
     def help_all(self):
