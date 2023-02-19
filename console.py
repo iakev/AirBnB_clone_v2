@@ -113,27 +113,13 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, args):
-        """ Create an object of any class and return the ID"""
-        # need to preprocess the arguments
-        c_args = args.split(" ")
-        c_name = c_args[0]
-        if len(c_args) == 0 or '=' in c_name:
-            print("** class name missing **")
-            return
-        elif c_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        if len(c_args) == 1:
-            new_instance = HBNBCommand.classes[c_name]()
-            storage.save()
-            print(new_instance.id)
-            storage.save()
-            return
-        params = c_args[1:len(c_args)]
-        # pre procesisng params
+    def pre_process_args(self, param_args):
+        """Helper function for preprocessing create params 
+        returns a  dictionary containing the params"""
+        if not param_args:
+            return None
         params_dict = {}
-        for param in params:
+        for param in param_args:
             key_val = param.split('=')
             key = key_val[0]
             val = key_val[1]
@@ -153,12 +139,26 @@ class HBNBCommand(cmd.Cmd):
                 except Exception as e:
                     val = None
             params_dict[key] = val
+        return params_dict
+
+    def do_create(self, args):
+        """ Create an object of any class and return the ID"""
+        c_args = args.split(" ")
+        c_name = c_args[0]
+        if len(c_args) < 1 or '=' in c_name:
+            print("** class name missing **")
+            return
+        elif c_name not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        # need to preprocess the arguments
+        params_dict = self.pre_process_args(c_args[1:len(c_args)])
         # creating new object
         new_instance = HBNBCommand.classes[c_name]()
-        for k, v in params_dict.items():
-            if v is None:
-                continue
-            setattr(new_instance, k, v)
+        if params_dict:
+            for k, v in params_dict.items():
+                setattr(new_instance, k, v)
+                print("contains ke=val params")
         storage.save()
         print(new_instance.id)
         storage.save()
@@ -249,7 +249,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             for k, v in storage._FileStorage__objects.items():
                 print_list.append(str(v))
-
+                
         print(print_list)
 
     def help_all(self):
