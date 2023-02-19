@@ -4,6 +4,7 @@ import unittest
 import console
 import os
 import io
+import subprocess
 from contextlib import redirect_stdout
 from models import storage
 from models.base_model import BaseModel
@@ -28,8 +29,8 @@ class test_console(unittest.TestCase):
         """ test that console module exists"""
         self.assertTrue(os.path.isfile('console.py'))
 
-    def test_create_wto_params(self):
-        """test that console creates without params"""
+    def test_create_state(self):
+        """ test that console creates without params"""
         with redirect_stdout(io.StringIO()) as f:
             HBNBComm.do_create("State")
         id = f.getvalue()
