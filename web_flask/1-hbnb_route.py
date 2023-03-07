@@ -13,10 +13,12 @@ def hello_flask():
     """ return first content """
     return "Hello HBNB!"
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """another route to hbnb addded"""
     return "HBNB"
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
