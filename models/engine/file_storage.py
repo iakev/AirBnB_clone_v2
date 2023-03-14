@@ -23,11 +23,13 @@ class FileStorage:
         all_objs = FileStorage.__objects
         if cls:
             cls_objs = {}
-            if cls in classes:
-                for k, v in all_objs:
-                    if str(cls) == v.to_dict()['__class__']:
-                        cls_objs[k] = v
-                return cls_objs
+            for k, v in classes.items():
+                if cls == v:
+                    key = k
+                    for k, v in all_objs.items():
+                        if key == v.to_dict()['__class__']:
+                            cls_objs[k] = v
+                    return cls_objs
         return all_objs
 
     def new(self, obj):
